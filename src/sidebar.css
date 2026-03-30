@@ -1,0 +1,102 @@
+/* SIDEBAR CSS */
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #ececec;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 270px;
+            height: 100vh;
+            background: black;
+            color: white;
+            box-shadow: 2px 0 12px rgba(0,0,0,0.06);
+            padding: 25px;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            padding: 12px;
+            background: #000000;
+            color: white;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+
+        .menu-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0 0 15px;
+            opacity: .6;
+        }
+
+        .menu {
+            flex: 1;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: .25s;
+        }
+        
+        
+        .menu i {
+           
+        }
+
+        .menu a:hover,
+        .menu a:visited,
+        .menu a:active {
+            background: #b25252;
+            color: #fff;
+        }
+
+        img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        /* LOGOUT BUTTON NEW */
+        .logout-btn {
+            background: #8f0404;
+            padding: 12px;
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            text-decoration: none;
+            text-align: center;
+            transition: .25s;
+        }
+
+        .logout-btn:hover {
+            background: #d93636;
+        }

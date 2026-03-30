@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Siswa | SI Bimbingan Konseling</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../src/sidebar.css">
+    <style>
+
+        /* MAIN */
+        .main{
+            margin-left:270px;
+            padding:35px;
+            width:100%;
+        }
+
+        .header-text h1{
+            font-size:26px;
+            font-weight:700;
+        }
+
+        .sub-text {
+            font-size: 13px;
+            opacity: .6;
+            margin-bottom: 20px;
+        }
+
+        /* CARD WRAPPER */
+        .card{
+            background:white;
+            padding:25px;
+            border-radius:18px;
+            margin-top:25px;
+            box-shadow:0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        /* TOOLBAR */
+        .toolbar{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:20px;
+        }
+
+        .toolbar-left{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            width:80%;
+        }
+
+        .toolbar-right{
+            display:flex;
+            justify-content:flex-end;
+        }
+
+        .search-box{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            flex:1;
+            background: #f2f2f2ff;
+            padding:12px 14px;
+            border-radius:12px;
+        }
+
+        .search-box input{
+            flex:1;
+            border:none;
+            background:transparent;
+            font-size:14px;
+        }
+
+        .search-box input:focus{
+            outline:none;
+        }
+
+        .class-filter{
+            padding:12px 14px;
+            border-radius:12px;
+            background: #f2f2f2ff;
+            border:none;
+            font-size:14px;
+            width: 200px;
+        }
+
+        .btn-primary{
+            padding:12px 18px;
+            background: #4d4c4cff;
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-size:14px;
+            cursor:pointer;
+            transition:.25s;
+        }
+
+        .btn-primary:hover{
+            background: #000000ff;
+        }
+
+        /* TABLE */
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+            border-radius:18px;
+            overflow:hidden;
+            box-shadow:0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        table thead{
+            background: #4d4c4cff;
+            color:white;
+        }
+
+        table th, table td{
+            padding:14px;
+            font-size:14px;
+            text-align: center;
+        }
+
+        table tbody tr:hover{
+            background: #c4c4c4ff;
+        }
+
+        td i{
+            cursor:pointer;
+            margin:0 6px;
+            font-size:16px;
+        }
+
+        .btn-tambah {
+            color: white;
+            text-decoration: none;
+        }
+
+        .edit-btn{color:#008cff;}
+        .delete-btn{color:#ff4d4d;}
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <div class="logo">
+            <img src="../src/logo_ma.png" alt="logo">
+            SI Bimbingan Konseling
+        </div>
+
+        <div class="menu-title">Menu Utama</div>
+
+        <div class="menu">
+            <a href="../index.html" class="active"><i class="fa-solid fa-dashboard"></i>Dashboard</a>
+            <a href="kelola_siswa.html"><i class="fa-solid fa-users"></i>Kelola Siswa</a>
+            <a href="#"><i class="fa-solid fa-file-lines"></i>Konseling Siswa</a>
+            <a href="#"><i class="fa-solid fa-circle-exclamation"></i>Poin Pelanggaran</a>
+            <a href="#"><i class="fa-solid fa-chart-line"></i>Perkembangan Siswa</a>
+        </div>
+
+        <!-- LOGOUT NOW HERE -->
+        <a href="../../auth/logout.php" class="logout-btn" onclick="return confirm('Apakah anda yakin?')" ><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="main">
+
+        <div class="header-text">
+            <h1>Kelola Siswa</h1>
+            <div class="sub-text">Data lengkap siswa aktif</div>
+        </div>
+
+        <div class="card">
+
+            <!-- FILTER BAR -->
+            <div class="toolbar">
+                <div class="toolbar-left">
+
+                    <div class="search-box">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Cari nama siswa ...">
+                    </div>
+
+                    <select class="class-filter" id="classFilter">
+                        <option>Semua Kelas</option>
+                        <option>X - A </option>
+                        <option>X - B </option>
+                        <option>X - C </option>
+                        <option>X - D </option>
+                        <option>XI - A </option>
+                        <option>XI - B </option>
+                        <option>XI - C </option>
+                        <option>XI - D </option>
+                        <option>XII - A </option>
+                        <option>XII - B </option>
+                        <option>XII - C </option>
+                    </select>
+                </div>
+
+                <div class="toolbar-right">
+                    <button class="btn-primary">
+                        <a class="btn-tambah" href="form_siswa.html"><i class="fa-solid fa-plus"></i> Tambah Siswa</a>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TABLE -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>NISN</th>
+                        <th>Nama</th>
+                        <th>Kelas</th>
+                        <th>Jenis Kelamin</th>
+                        <th>No. Telp Orang Tua</th>
+                        <th>Alamat</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>00001</td>
+                        <td>Jefri Nichol</td>
+                        <td>XII - C</td>
+                        <td>Laki - laki</td>
+                        <td>085212345678</td>
+                        <td>Cijoho</td>
+                        <td>
+                            <a class="edit-link" href="#"> <i class="fa-solid fa-pen edit-btn"></i> </a>
+                            <a class="delete-link" onclick="return confirm('Apakah anda yakin?')" href=""> <i class="fa-solid fa-trash delete-btn"></i> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>00002</td>
+                        <td>Abdulloh</td>
+                        <td>XII - C</td>
+                        <td>Laki - laki</td>
+                        <td>085212345678</td>
+                        <td>Cikidang</td>
+                        <td>
+                            <a class="edit-link" href="#"> <i class="fa-solid fa-pen edit-btn"></i> </a>
+                            <a class="delete-link" onclick="return confirm('Apakah anda yakin?')" href=""> <i class="fa-solid fa-trash delete-btn"></i> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>00003</td>
+                        <td>Siti Maemunah</td>
+                        <td>XII - A</td>
+                        <td>Perempuan</td>
+                        <td>085212345678</td>
+                        <td>Pamoyanan</td>
+                        <td>
+                            <a class="edit-link" href="#"> <i class="fa-solid fa-pen edit-btn"></i> </a>
+                            <a class="delete-link" onclick="return confirm('Apakah anda yakin?')" href=""> <i class="fa-solid fa-trash delete-btn"></i> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>00004</td>
+                        <td>Rachelia</td>
+                        <td>XII - B</td>
+                        <td>Perempuan</td>
+                        <td>085212345678</td>
+                        <td>Ciranjang</td>
+                        <td>
+                            <a class="edit-link" href="#"> <i class="fa-solid fa-pen edit-btn"></i> </a>
+                            <a class="delete-link" onclick="return confirm('Apakah anda yakin?')" href=""> <i class="fa-solid fa-trash delete-btn"></i> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>00005</td>
+                        <td>Chealse Van Meijr</td>
+                        <td>XII - B</td>
+                        <td>Perempuan</td>
+                        <td>085212345678</td>
+                        <td>Ciwalen</td>
+                        <td>
+                            <a class="edit-link" href="#"> <i class="fa-solid fa-pen edit-btn"></i> </a>
+                            <a class="delete-link" onclick="return confirm('Apakah anda yakin?')" href=""> <i class="fa-solid fa-trash delete-btn"></i> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>00006</td>
+                        <td>Oliver Syskes</td>
+                        <td>XII - A</td>
+                        <td>Laki - laki</td>
+                        <td>085212345678</td>
+                        <td>Warungkondang</td>
+                        <td>
+                            <a class="edit-link" href="#"> <i class="fa-solid fa-pen edit-btn"></i> </a>
+                            <a class="delete-link" onclick="return confirm('Apakah anda yakin?')" href=""> <i class="fa-solid fa-trash delete-btn"></i> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>00007</td>
+                        <td>Noah Sebastian</td>
+                        <td>XI - C</td>
+                        <td>Laki - laki</td>
+                        <td>085212345678</td>
+                        <td>Gekbrong</td>
+                        <td>
+                            <a class="edit-link" href="#"> <i class="fa-solid fa-pen edit-btn"></i> </a>
+                            <a class="delete-link" onclick="return confirm('Apakah anda yakin?')" href=""> <i class="fa-solid fa-trash delete-btn"></i> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>00008</td>
+                        <td>Matt Kein</td>
+                        <td>XI - A</td>
+                        <td>Laki - laki</td>
+                        <td>085212345678</td>
+                        <td>Cipanas</td>
+                        <td>
+                            <a class="edit-link" href="#"> <i class="fa-solid fa-pen edit-btn"></i> </a>
+                            <a class="delete-link" onclick="return confirm('Apakah anda yakin?')" href=""> <i class="fa-solid fa-trash delete-btn"></i> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>00009</td>
+                        <td>Mbappe</td>
+                        <td>XII - C</td>
+                        <td>Laki - laki</td>
+                        <td>085212345678</td>
+                        <td>Madrid</td>
+                        <td>
+                            <a class="edit-link" href="#"> <i class="fa-solid fa-pen edit-btn"></i> </a>
+                            <a class="delete-link" onclick="return confirm('Apakah anda yakin?')" href=""> <i class="fa-solid fa-trash delete-btn"></i> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>000010</td>
+                        <td>Vonzy</td>
+                        <td>X - A</td>
+                        <td>Perempuan</td>
+                        <td>085212345678</td>
+                        <td>Cianjur</td>
+                        <td>
+                            <a class="edit-link" href="#"> <i class="fa-solid fa-pen edit-btn"></i> </a>
+                            <a class="delete-link" onclick="return confirm('Apakah anda yakin?')" href=""> <i class="fa-solid fa-trash delete-btn"></i> </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <script>
+    // ambil elemen input dan select filter
+    const searchInput = document.querySelector('.search-box input');
+    const classFilter = document.querySelector('.class-filter');
+
+    // fungsi filter tabel
+    function filterTable() {
+    const keyword = searchInput.value.toLowerCase().trim();
+    const kelas = classFilter.value.toLowerCase().trim();
+
+    // ambil semua baris tbody
+    const rows = document.querySelectorAll('table tbody tr');
+
+    rows.forEach(row => {
+        const nisn = row.querySelector('td:nth-child(2)')?.textContent.toLowerCase() || ''; // kolom NISN
+        const nama = row.querySelector('td:nth-child(3)')?.textContent.toLowerCase() || ''; // kolom Nama
+        const kelasRow = row.querySelector('td:nth-child(4)')?.textContent.toLowerCase() || ''; // kolom Kelas
+
+        const cocokKeyword = keyword === '' || nisn.includes(keyword) || nama.includes(keyword);
+        const cocokKelas = kelas === '' || kelas === 'semua kelas' || kelasRow === kelas;
+
+        row.style.display = (cocokKeyword && cocokKelas) ? '' : 'none';
+    });
+    }
+
+    // jalankan filter saat mengetik atau ganti kelas
+    searchInput.addEventListener('input', filterTable);
+    classFilter.addEventListener('change', filterTable);
+    </script>
+
+
+
+</body>
+</html>

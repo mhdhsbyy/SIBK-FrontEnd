@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | SI Bimbingan Konseling</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/sidebar.css">
+    <style>
+
+        /* MAIN CONTENT */
+        .main {
+            margin-left: 270px;
+            padding: 35px;
+            width: 100%;
+        }
+
+        .header-text h1{
+            font-size:26px;
+            font-weight:700;
+        }
+
+        .date-text {
+            font-size: 13px;
+            opacity: .6;
+            margin-bottom: 20px;
+        }
+
+        .welcome-box {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            font-size: 15px;
+            font-weight: 500;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        /* CARD WRAPPER */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: .25s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+        }
+
+        .card i {
+            padding: 18px;
+            font-size: 20px;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .text-title {
+            font-size: 14px;
+            opacity: .7;
+        }
+
+        .text-value {
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 3px;
+        }
+
+        .purple { background: #4d4c4cff; }
+        .pink { background: #6fabffff; }
+        .orange { background: #ff4343ff; }
+
+        /* NEW ELEMENTS */
+        .section {
+            margin-top: 35px;
+        }
+
+        .section h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section:last-child {
+            margin-bottom: 20px;
+        }
+
+
+        .chart-box {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            height: 250px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        table thead {
+            background: #4d4c4cff;
+            color: white;
+        }
+
+        table th, table td {
+            padding: 14px;
+            font-size: 14px;
+        }
+
+        table tbody tr:hover {
+            background: #f0eeff;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <div class="logo">
+            <img src="src/logo_ma.png" alt="logo">
+            SI Bimbingan Konseling
+        </div>
+
+        <div class="menu-title">Menu Utama</div>
+
+        <div class="menu">
+            <a href="index.html" class="active"><i class="fa-solid fa-dashboard"></i>Dashboard</a>
+            <a href="views/kelola_siswa.html"><i class="fa-solid fa-users"></i>Kelola Siswa</a>
+            <a href="#"><i class="fa-solid fa-file-lines"></i>Konseling Siswa</a>
+            <a href="#"><i class="fa-solid fa-circle-exclamation"></i>Poin Pelanggaran</a>
+            <a href="#"><i class="fa-solid fa-chart-line"></i>Perkembangan Siswa</a>
+        </div>
+
+        <!-- LOGOUT NOW HERE -->
+        <a href="../../auth/logout.php" class="logout-btn" onclick="return confirm('Apakah anda yakin?')"  ><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <div class="header-text">
+            <h1>Dashboard</h1>
+            <div class="date-text">Senin, 21 Desember 2025</div>
+        </div>
+
+        <div class="welcome-box">
+            Selamat datang, <b>Hasby</b>! Semoga harimu menyenangkan ✨
+        </div>
+
+        <!-- STATISTICS CARDS -->
+        <div class="card-grid">
+
+            <div class="card">
+                <i class="fa-solid fa-user-group purple"></i>
+                <div>
+                    <div class="text-title">Total Siswa</div>
+                    <div class="text-value">33</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-clipboard pink"></i>
+                <div>
+                    <div class="text-title">Catatan Konseling</div>
+                    <div class="text-value">48</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-triangle-exclamation orange"></i>
+                <div>
+                    <div class="text-title">Catatan Pelanggaran</div>
+                    <div class="text-value">23</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CHART -->
+        <div class="section">
+            <h2>Statistik Perkembangan Siswa</h2>
+            <div class="chart-box">
+                <canvas id="growthChart"></canvas>
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="section">
+            <h2>5 Catatan Konseling Terbaru</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama Siswa</th>
+                        <th>Kelas</th>
+                        <th>Tanggal</th>
+                        <th>Topik</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dewi Anisa</td>
+                        <td>XI-IPA 2</td>
+                        <td>20/12/2025</td>
+                        <td>Perkembangan akademik</td>
+                    </tr>
+                    <tr>
+                        <td>Riki Hanafi</td>
+                        <td>X-IPS 1</td>
+                        <td>20/12/2025</td>
+                        <td>Kesulitan belajar</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- CHART JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('growthChart');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                datasets: [{
+                    label: 'Jumlah perkembangan siswa',
+                    data: [4, 8, 6, 12, 9, 15],
+                    borderWidth: 3,
+                    borderColor: '#000000',
+                    backgroundColor: 'rgba(135, 10, 10, 0.2)',
+                    tension: .25
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
